@@ -1,0 +1,6 @@
+// seed.js (run `node seed.js`)
+const Database = require('better-sqlite3');
+const db = new Database('./db.sqlite');
+const insert = db.prepare('INSERT OR IGNORE INTO coupons (code, face_value) VALUES (?, ?)');
+for(let i=1;i<=50;i++) insert.run('COUP100-' + String(i).padStart(4,'0'), 100);
+console.log('seeded');
